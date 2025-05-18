@@ -11,6 +11,7 @@ const images = {
   chakchaImage: "/assets/images/chakcha.webp",
   navbarCover: "/assets/images/navbar-cover.jpg",
 
+  
   // EVENTS
   behemothImage: "/assets/images/events/behemoth.png",
   passImage: "/assets/images/events/pass.png",
