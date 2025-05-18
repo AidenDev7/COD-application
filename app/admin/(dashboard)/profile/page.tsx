@@ -11,11 +11,12 @@ import {
   CustomParallaxCard,
   ButtonDemo,
   DialogDemo,
-  CropDemo
+  CropDemo,
 } from "@/components/index";
 import localData from "@/localData";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Settings, Pencil, Expand } from "lucide-react";
+import useUtil from "@/hooks/useUtil";
 
 import UserInfoDialog from "./user-info-dialog/UserInfoDialog";
 import HeroCardsDialog from "./hero-cards-dialog/HeroCardsDialog";
@@ -24,7 +25,7 @@ import UnitCardsDialog from "./unit-cards-dialog/UnitCardsDialog";
 import ProfileHeader from "./profile-header/ProfileHeader";
 import { useGlobalContext } from "@/contexts/context";
 
-const { avatarPlaceholderImage,heroPlaceholderImage } = localData.images;
+const { avatarPlaceholderImage, heroPlaceholderImage } = localData.images;
 
 const { userGearImage } = localData.svgs;
 
@@ -47,11 +48,11 @@ const Page = () => {
       <br />
       <Card className="mb-[300px] min-h-[500px] relative pb-[100px]">
         <CardContent>
-          <ProfileHeader/>
+          <ProfileHeader />
           <UserInfoBlock />
           <HeroesBlock />
           <ArtifactsBlock />
-          <UnitsBlock/>
+          <UnitsBlock />
           {/* <CustomArsenalBlock /> */}
         </CardContent>
       </Card>
@@ -63,6 +64,7 @@ const Page = () => {
 const UserInfoBlock = () => {
   const { fetchedCurrentUser } = useApiContext();
   const { details } = fetchedCurrentUser;
+  const { formatWithCommas } = useUtil();
 
   return (
     <div className="mb-[150px] relative  py-5">
@@ -121,7 +123,7 @@ const UserInfoBlock = () => {
           </div>
           <div className="flex items-center justify-between text-sm gap-5 py-1 px-3 border-b-1 border-dashed border-gray-300  mb-3">
             <div className="font-bold">Power:</div>
-            <div>{details.power || "-"}</div>
+            <div>{(details.power && formatWithCommas(details.power.toString())) || "-"}</div>
           </div>
         </div>
       </div>
@@ -137,7 +139,6 @@ const HeroesBlock = () => {
   const { fetchedCurrentUser } = useApiContext();
   const { details } = fetchedCurrentUser;
   const [featuredHeroes, setFeaturedHeroes] = useState([]);
-
 
   useEffect(() => {
     if (!details.heroes) return;
@@ -184,9 +185,7 @@ const HeroesBlock = () => {
       </div>
       <div className={`card-group ${expand} hero-card-group mb-[77px]  `}>
         {featuredHeroes.length ? (
-          featuredHeroes.map((item: any, index) => (
-            <HeroCard key={index} {...item} />
-          ))
+          featuredHeroes.map((item: any, index) => <HeroCard key={index} {...item} />)
         ) : (
           <HeroCard placeholderImage={heroPlaceholderImage} />
         )}
@@ -249,9 +248,7 @@ const ArtifactsBlock = () => {
       </div>
       <div className={`card-group ${expand} hero-card-group mb-[77px] `}>
         {featuredArtifacts.length ? (
-          featuredArtifacts.map((item: any, index) => (
-            <ArtifactCard key={index} {...item} />
-          ))
+          featuredArtifacts.map((item: any, index) => <ArtifactCard key={index} {...item} />)
         ) : (
           <ArtifactCard placeholderImage={heroPlaceholderImage} />
         )}
@@ -314,9 +311,7 @@ const UnitsBlock = () => {
       </div>
       <div className={`card-group ${expand} hero-card-group `}>
         {featuredUnits.length ? (
-          featuredUnits.map((item: any, index) => (
-            <UnitCard key={index} {...item} />
-          ))
+          featuredUnits.map((item: any, index) => <UnitCard key={index} {...item} />)
         ) : (
           <UnitCard placeholderImage={heroPlaceholderImage} />
         )}

@@ -89,50 +89,65 @@ const useUtil = () => {
 
   const resizeBase64Image = (base64Str: string, maxSizeKB: number): Promise<string> => {
     return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d");
 
-      if (!ctx) return reject(new Error('Canvas context error'));
-      ctx.drawImage(img, 0, 0);
+        if (!ctx) return reject(new Error("Canvas context error"));
+        ctx.drawImage(img, 0, 0);
 
-      let low = 0.1;
-      let high = 1.0;
-      let bestMatch = canvas.toDataURL('image/jpeg', low); // fallback
+        let low = 0.1;
+        let high = 1.0;
+        let bestMatch = canvas.toDataURL("image/jpeg", low); // fallback
 
-      while (low <= high) {
-        const mid = (low + high) / 2;
-        const output = canvas.toDataURL('image/jpeg', mid);
-        const sizeKB = Math.round((output.length * 3) / 4 / 1024);
+        while (low <= high) {
+          const mid = (low + high) / 2;
+          const output = canvas.toDataURL("image/jpeg", mid);
+          const sizeKB = Math.round((output.length * 3) / 4 / 1024);
 
-        if (sizeKB <= maxSizeKB) {
-          bestMatch = output;
-          low = mid + 0.01; // try higher quality
-        } else {
-          high = mid - 0.01; // try lower quality
+          if (sizeKB <= maxSizeKB) {
+            bestMatch = output;
+            low = mid + 0.01; // try higher quality
+          } else {
+            high = mid - 0.01; // try lower quality
+          }
         }
-      }
 
-      resolve(bestMatch);
-    };
+        resolve(bestMatch);
+      };
 
-    img.onerror = () => reject(new Error('Image load error'));
-    img.src = base64Str;
-  });
+      img.onerror = () => reject(new Error("Image load error"));
+      img.src = base64Str;
+    });
   };
 
   function formatTimestampToDate(timestamp: any) {
-      const date = new Date(timestamp.seconds * 1000);
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const day = String(date.getDate()).padStart(2, "0");
-      return `${year}/${month}/${day}`;
-    }
+    const date = new Date(timestamp.seconds * 1000);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}/${month}/${day}`;
+  }
 
-  return { compressImage, convertToBase64, resizeBase64Image, formatTimestampToDate };
+  const formatWithCommas = (value: string) => {
+    const num = value.replace(/,/g, "");
+    if (!/^\d+$/.test(num)) return value;
+    return Number(num).toLocaleString();
+  };
+
+  const unformatFromCommas = (value: string) => value.replace(/,/g, "");
+
+  return {
+    compressImage,
+    convertToBase64,
+    resizeBase64Image,
+    formatTimestampToDate,
+    formatWithCommas,
+    unformatFromCommas,
+  };
 };
 
 export default useUtil;

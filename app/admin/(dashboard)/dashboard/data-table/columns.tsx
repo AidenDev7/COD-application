@@ -42,6 +42,14 @@ export type Payment = {
   details?: any;
 };
 
+const formatWithCommas = (value: string) => {
+  const num = value.replace(/,/g, "");
+  if (!/^\d+$/.test(num)) return value;
+  return Number(num).toLocaleString();
+};
+
+const unformatFromCommas = (value: string) => value.replace(/,/g, "");
+
 export const columns: ColumnDef<Payment>[] = [
   // {
   //   id: "select",
@@ -64,7 +72,7 @@ export const columns: ColumnDef<Payment>[] = [
   //   enableSorting: false,
   //   enableHiding: false,
   // },
-    {
+  {
     accessorKey: "index",
     header: () => <div className="px-3 text-center">#</div>,
     enableHiding: false,
@@ -74,10 +82,7 @@ export const columns: ColumnDef<Payment>[] = [
 
       return (
         // <div className="rounded-full shadow-[1px_1px_6px_rgba(0,0,0,0.1)]  flex items-center justify-center w-[20px] h-[20px] font-bold">
-        <div>
-          
-        { sortedIndex + 1}
-          </div> 
+        <div>{sortedIndex + 1}</div>
         // </div>
       );
     },
@@ -139,7 +144,11 @@ export const columns: ColumnDef<Payment>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="capitalize ">{row.getValue("power") || "-"}</div>,
+    cell: ({ row }) => {
+      const value = row.getValue("power");
+      const formatted = typeof value === "number" ? value.toLocaleString() : "-";
+      return <div className="capitalize ">{formatted}</div>;
+    },
   },
   {
     accessorKey: "mainUnitType",

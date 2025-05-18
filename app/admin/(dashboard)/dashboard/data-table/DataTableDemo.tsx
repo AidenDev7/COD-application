@@ -14,6 +14,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { ChevronDown, ChevronLeft, ChevronRight, EyeIcon } from "lucide-react";
+import useUtil from "@/hooks/useUtil";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -274,6 +275,7 @@ const ExpandedRow = ({ row = [], columns = [] }: { row: any; columns: any }) => 
   const [artifacts, setArtifacts] = React.useState(row.artifacts?.filter((item: any) => item.isFeatured));
   const [units, setUnits] = React.useState(row.units?.filter((item: any) => item.isFeatured));
 
+  const {formatWithCommas} = useUtil()
   const {fetchedCurrentUser: {details: fetchedCurrentUserDetails}} = useApiContext()
 
   const items: ItemsProps[] = [
@@ -383,7 +385,7 @@ const ExpandedRow = ({ row = [], columns = [] }: { row: any; columns: any }) => 
                   </div>
                   <div className="flex items-center justify-between text-xs gap-5 px-3 border-b-1 border-dashed border-gray-300  mb-3">
                     <div className="font-bold">Power</div>
-                    <div>{row.power || "-"}</div>
+                    <div>{(row.power && formatWithCommas(row.power.toString())) || "-"}</div>
                   </div>
                 </div>
 

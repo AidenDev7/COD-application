@@ -15,6 +15,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Settings, Pencil, Expand } from "lucide-react";
 import { useApiContext } from "@/contexts/ApiContext";
 import { useAuthContext } from "@/contexts/AuthContext";
+import useUtil from "@/hooks/useUtil";
 
 type StateProps = {
   inGameID: string;
@@ -51,7 +52,7 @@ const UserInfoDialogContent = ({ closeDialog = () => {} }) => {
     gameTime: "",
     mainUnitType: "",
     unitLevel: "",
-    power: ''
+    power: "",
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -59,10 +60,24 @@ const UserInfoDialogContent = ({ closeDialog = () => {} }) => {
   const { currentUser } = useAuthContext();
   const { details } = fetchedCurrentUser;
 
+  const {formatWithCommas, unformatFromCommas} = useUtil()
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
+    }));
+  };
+
+
+
+  const onNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    const raw = unformatFromCommas(value);
+    if (!/^\d*$/.test(raw)) return; // prevent non-numeric
+    setState((prev) => ({
+      ...prev,
+      [name]: formatWithCommas(raw),
     }));
   };
 
@@ -92,11 +107,10 @@ const UserInfoDialogContent = ({ closeDialog = () => {} }) => {
     if (state.unitLevel !== details.unitLevel) {
       updatedFields.unitLevel = state.unitLevel;
     }
-    if (state.power !== details.power) {
-      updatedFields.power = state.power;
-    }
 
-    console.log(updatedFields, ' kkkk')
+    if (Number(unformatFromCommas(state.power)) !== details.power) {
+      updatedFields.power = Number(unformatFromCommas(state.power));
+    }
 
     updateUser({
       id: currentUser?.uid,
@@ -120,7 +134,7 @@ const UserInfoDialogContent = ({ closeDialog = () => {} }) => {
       gameTime: details.gameTime,
       mainUnitType: details.mainUnitType,
       unitLevel: details.unitLevel,
-      power: details.power,
+      power: formatWithCommas(details.power.toString()),
     }));
   }, [fetchedCurrentUser]);
 
@@ -129,7 +143,6 @@ const UserInfoDialogContent = ({ closeDialog = () => {} }) => {
       <br />
       <form action="" onSubmit={onSubmit} className="">
         <div className="wrapper grid grid-cols-1 sm:grid-cols-2 gap-x-7  mb-3">
-   
           <InputDemo
             label="In-Game ID"
             placeholder="e.g., John Doe"
@@ -198,15 +211,16 @@ const UserInfoDialogContent = ({ closeDialog = () => {} }) => {
             label="Power"
             placeholder="e.g., 10M"
             name="power"
+            // type="number"
             type="text"
-            callback={(e) => onChange(e)}
+            callback={(e) => onNumberChange(e)}
             className="mb-5"
             value={state.power}
           />
         </div>
 
         <div className="button-group flex gap-2 justify-end">
-          <ButtonDemo className="" text="Cancel" variant="outline" type='button' onClick={closeDialog}/>
+          <ButtonDemo className="" text="Cancel" variant="outline" type="button" onClick={closeDialog} />
           <ButtonDemo className="" text={`${isLoading ? "Loading..." : "Save"}`} />
         </div>
       </form>

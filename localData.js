@@ -11,7 +11,6 @@ const images = {
   chakchaImage: "/assets/images/chakcha.webp",
   navbarCover: "/assets/images/navbar-cover.jpg",
 
-  
   // EVENTS
   behemothImage: "/assets/images/events/behemoth.png",
   passImage: "/assets/images/events/pass.png",
@@ -106,7 +105,7 @@ const images = {
   tailledragonImage: "/assets/images/artifacts/tailledragon-call-of-dragons.png",
 
   // UNITS
-    unitPlaceholderImage: "/assets/images/rest/soldier.png",
+  unitPlaceholderImage: "/assets/images/rest/soldier.png",
   unit1Image: "/assets/images/units/unit-1.png",
   unit2Image: "/assets/images/units/unit-2.png",
   unit3Image: "/assets/images/units/unit-3.png",
@@ -119,12 +118,12 @@ const images = {
   unit10Image: "/assets/images/units/unit-10.png",
 
   // CUSTOM ARSENAL
-  customArsenalScreenshot1Image: "/assets/images/rest/custom-arsenal-screenshot-1.png",
-  customArsenalScreenshot2Image: "/assets/images/rest/custom-arsenal-screenshot-2.png",
-  customArsenalScreenshot3Image: "/assets/images/rest/custom-arsenal-screenshot-3.png",
-  customArsenalScreenshot4Image: "/assets/images/rest/custom-arsenal-screenshot-4.png",
-  customArsenalScreenshot5Image: "/assets/images/rest/formations/formation-1.png",
-  customArsenalScreenshot6Image: "/assets/images/rest/formations/mobile-formation.jpg",
+  // customArsenalScreenshot1Image: "/assets/images/rest/custom-arsenal-screenshot-1.png",
+  // customArsenalScreenshot2Image: "/assets/images/rest/custom-arsenal-screenshot-2.png",
+  // customArsenalScreenshot3Image: "/assets/images/rest/custom-arsenal-screenshot-3.png",
+  // customArsenalScreenshot4Image: "/assets/images/rest/custom-arsenal-screenshot-4.png",
+  // customArsenalScreenshot5Image: "/assets/images/rest/formations/formation-1.png",
+  // customArsenalScreenshot6Image: "/assets/images/rest/formations/mobile-formation.jpg",
 
   // REST
   hero1Image: "/assets/images/rest/hero-1.png",
@@ -146,7 +145,6 @@ const images = {
   statueLeftImage: "/assets/images/rest/statue-left.png",
   statueRightImage: "/assets/images/rest/statue-right.png",
   heroesImage: "/assets/images/rest/heroes.png",
-
 };
 
 const localData = {
