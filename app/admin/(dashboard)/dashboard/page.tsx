@@ -8,7 +8,7 @@ import localData from "@/localData";
 import { Card, CardContent } from "@/components/ui/card";
 import { useApiContext } from "@/contexts/ApiContext";
 
-const { heroesLookingDownImage, SkogulImage, customArsenalScreenshot6Image, mapImage } = localData.images;
+const { heroesLookingDownImage, SkogulImage, mapImage } = localData.images;
 const { avatarImage } = localData.svgs;
 
 const breadcrumbItems = [
