@@ -43,7 +43,7 @@ const ShowcaseSection = () => {
           className={`avatar ${inView ? "lazy-animate" : ""} delay-300 max-w-[400px] w-full`}
           data-lazy="fade"
         >
-          <img src={images[0].url} alt="avatar" className="w-full h-auto rounded-lg" />
+          <img src={images[0].url} alt="avatar" className="w-full max-h-[300px] object-contain rounded-lg" />
         </div>
       </motion.div>
     </section>
