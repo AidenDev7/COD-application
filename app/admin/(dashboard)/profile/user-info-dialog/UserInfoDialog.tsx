@@ -134,7 +134,7 @@ const UserInfoDialogContent = ({ closeDialog = () => {} }) => {
       gameTime: details.gameTime,
       mainUnitType: details.mainUnitType,
       unitLevel: details.unitLevel,
-      power: formatWithCommas(details.power.toString()),
+      power: details.power && formatWithCommas(details.power.toString()),
     }));
   }, [fetchedCurrentUser]);
 
@@ -209,7 +209,7 @@ const UserInfoDialogContent = ({ closeDialog = () => {} }) => {
           />
           <InputDemo
             label="Power"
-            placeholder="e.g., 10M"
+            placeholder="e.g., 10,000,000"
             name="power"
             // type="number"
             type="text"
