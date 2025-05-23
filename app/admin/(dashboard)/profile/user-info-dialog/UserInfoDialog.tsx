@@ -60,7 +60,7 @@ const UserInfoDialogContent = ({ closeDialog = () => {} }) => {
   const { currentUser } = useAuthContext();
   const { details } = fetchedCurrentUser;
 
-  const {formatWithCommas, unformatFromCommas} = useUtil()
+  const { formatWithCommas, unformatFromCommas } = useUtil();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState((prev) => ({
@@ -68,8 +68,6 @@ const UserInfoDialogContent = ({ closeDialog = () => {} }) => {
       [e.target.name]: e.target.value,
     }));
   };
-
-
 
   const onNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -108,7 +106,7 @@ const UserInfoDialogContent = ({ closeDialog = () => {} }) => {
       updatedFields.unitLevel = state.unitLevel;
     }
 
-    if (Number(unformatFromCommas(state.power)) !== details.power) {
+    if (Number(unformatFromCommas(state.power.toString())) !== details.power) {
       updatedFields.power = Number(unformatFromCommas(state.power));
     }
 

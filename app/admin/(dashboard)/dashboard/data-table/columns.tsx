@@ -48,7 +48,6 @@ const formatWithCommas = (value: string) => {
   return Number(num).toLocaleString();
 };
 
-const unformatFromCommas = (value: string) => value.replace(/,/g, "");
 
 export const columns: ColumnDef<Payment>[] = [
   // {
