@@ -105,7 +105,7 @@ const UserInfoDialogContent = ({ closeDialog = () => {} }) => {
     if (state.unitLevel !== details.unitLevel) {
       updatedFields.unitLevel = state.unitLevel;
     }
-
+    console.log(state);
     if (Number(unformatFromCommas(state.power.toString())) !== details.power) {
       updatedFields.power = Number(unformatFromCommas(state.power));
     }
@@ -124,15 +124,15 @@ const UserInfoDialogContent = ({ closeDialog = () => {} }) => {
   useEffect(() => {
     setState((prev) => ({
       ...prev,
-      inGameName: details.displayName,
-      inGameID: details.inGameID,
-      country: details.country,
-      languages: details.languages,
-      faction: details.faction,
-      gameTime: details.gameTime,
-      mainUnitType: details.mainUnitType,
-      unitLevel: details.unitLevel,
-      power: details.power && formatWithCommas(details.power.toString()),
+      inGameName: details.displayName || "",
+      inGameID: details.inGameID || "",
+      country: details.country || "",
+      languages: details.languages || "",
+      faction: details.faction || "",
+      gameTime: details.gameTime || "",
+      mainUnitType: details.mainUnitType || "",
+      unitLevel: details.unitLevel || "",
+      power: (details.power && formatWithCommas(details.power.toString())) || "",
     }));
   }, [fetchedCurrentUser]);
 
