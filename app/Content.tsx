@@ -322,11 +322,10 @@ export default function Content() {
         <main className="home-page">
           <header>
             <nav className="bg-success text-white p-5 flex gap-10">
-              <div className="logo">
+              {/* <div className="logo">
                 <img className="max-w-[30px] " src={logo} alt="" />
-              </div>
+              </div> */}
               <ul className="flex items-center gap-5  ml-auto">
-                <a href="#home">Home</a>
                 <a href="#features">Features</a>
                 <a href="#contact">Contact</a>
                 <a href={` ${fetchedCurrentUser.details.id ? "/admin/dashboard" : "/admin/register"}`} target="_blank">
