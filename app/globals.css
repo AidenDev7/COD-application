@@ -76,6 +76,7 @@
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
+  /* --foreground: #2c2c2c; */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -193,7 +194,10 @@ main {
 
 body {
   font-family: var(--font-inter), var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  
 }
+
+
 
 .container {
   margin-inline: auto;

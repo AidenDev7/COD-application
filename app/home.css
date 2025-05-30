@@ -1,0 +1,8 @@
+.home-page {
+  /* background-color: rgb(160, 149, 121) rgb(169, 145, 115);   */
+  /* background: linear-gradient(to bottom, rgb(160, 149, 121) 0%, rgb(169, 145, 115) 100%); */
+  
+  background: linear-gradient(to bottom, rgb(160, 149, 121) 0%, rgb(169, 145, 115) 100%);
+  /* background: linear-gradient(to bottom, rgb(163, 153, 126) 0%, rgb(169, 145, 115) 100%); */
+    color: #2c2c2c;
+}

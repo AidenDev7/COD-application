@@ -9,7 +9,7 @@ import useAlert from "@/hooks/alert/useAlert";
 import useJoiValidation from "@/hooks/joi-validation/useJoiValidation";
 import useMessage from "@/hooks/useMessage";
 
-const { placeholderImage, logo, chakchaImage } = localData.images;
+const { placeholderImage, logo, chakchaImage,background1Image,background2Image } = localData.images;
 
 const ShowcaseSection = () => {
   const [inView, setIsInView] = useState(false);
@@ -28,7 +28,7 @@ const ShowcaseSection = () => {
         className="container flex justify-between items-center flex-col sm:flex-row gap-x-[50px] gap-y-[30px] flex-center"
       >
         <div className={`max-w-[490px] ${inView ? "lazy-animate" : ""}`} data-lazy="fade">
-          <h4 className="sub-title mb-1 text-[18px] font-medium text-gray-600">{title}</h4>
+          <h4 className="sub-title mb-1 text-[18px] font-medium text-[#3e3e3e]">{title}</h4>
           <h1 className="title text-3xl leading-[1.4]  md:text-5xl font-medium md:leading-[1.4] mb-10">
             {description}
           </h1>
@@ -50,6 +50,34 @@ const ShowcaseSection = () => {
   );
 };
 
+const PlaceholderSection1 = () => {
+  const [inView, setIsInView] = useState(false);
+  const { fetchedPages } = useApiContext();
+
+  return (
+    <section
+      className="min-h-[100vh] relative"
+    >
+      <img className="absolute top-0 left-0 w-full h-full object-contain" src={background1Image} alt="" />
+      <div className="container">f</div>
+    </section>
+  );
+};
+
+const PlaceholderSection2 = () => {
+  const [inView, setIsInView] = useState(false);
+  const { fetchedPages } = useApiContext();
+
+  return (
+    <section
+      className="min-h-[100vh] relative"
+    >
+      <img className="absolute top-0 left-0 w-full h-full object-contain" src={background2Image} alt="" />
+      <div className="container">f</div>
+    </section>
+  );
+};
+
 const FeaturesSection = () => {
   const [inView, setIsInView] = useState(false);
   const { fetchedPages } = useApiContext();
@@ -57,11 +85,11 @@ const FeaturesSection = () => {
   const { title, description, images } = fetchedPages.homePage.sections.features;
 
   return (
-    <section className="features bg-green-50" id="features">
+    <section className="features " id="features">
       <motion.div className="container" onViewportEnter={() => setIsInView(true)} viewport={{ amount: 0.3 }}>
         <div className={`${inView ? "lazy-animate" : ""}`} data-lazy="fade">
           <h2 className="text-3xl font-semibold text-center mb-3">{title}</h2>
-          <h6 className="description  text-center max-w-[450px] mx-auto text-sm text-gray-500 leading-6 mb-7">
+          <h6 className="description  text-center max-w-[450px] mx-auto text-sm text-[#3e3e3e] leading-6 mb-7">
             {description}
           </h6>
         </div>
@@ -207,12 +235,12 @@ const ContactSection = () => {
         >
           <div className=" flex-1">
             <h2 className="text-3xl font-semibold mb-3 text-center md:text-left">{title}</h2>
-            <h6 className="description md:inline-block text-center md:text-left mx-auto md:mx-none  max-w-[450px]  text-sm text-gray-500 leading-6 mb-7">
+            <h6 className="description md:inline-block text-center md:text-left mx-auto md:mx-none  max-w-[450px]  text-sm text-gray-700 leading-6 mb-7">
               {/* Or reach out manually to{" "}
               <a href="mailto:example@gmail.com" className="text-blue hover:text-blue-hover  underline">
                 example@gmail.com
               </a> */}
-              <div dangerouslySetInnerHTML={{ __html: description }} className="mb-10"></div>
+              <div dangerouslySetInnerHTML={{ __html: description }} className="mb-10 text-[#2c2c2c]"></div>
 
               <img src={images[0].url} alt="" className="max-w-[300px] hidden md:block mx-auto " />
             </h6>
@@ -235,7 +263,7 @@ const ContactSection = () => {
               value={state.name}
               callback={onChange}
               errorMessage={errorMessages.name}
-              inputClassName={errorMessages.name ? "is-invalid" : "is-valid"}
+              inputClassName={`border-neutral-600  ${errorMessages.name ? "is-invalid" : "is-valid"}`}
             />
 
             <br />
@@ -251,7 +279,7 @@ const ContactSection = () => {
               value={state.email}
               callback={onChange}
               errorMessage={errorMessages.email}
-              inputClassName={errorMessages.email ? "is-invalid" : "is-valid"}
+             inputClassName={`border-neutral-600  ${errorMessages.name ? "is-invalid" : "is-valid"}`}
             />
             <br />
             <TextareaDemo
@@ -263,7 +291,7 @@ const ContactSection = () => {
               callback={onChange}
               value={state.message}
               errorMessage={errorMessages.message}
-              textareaClassName={errorMessages.message ? "is-invalid" : "is-valid"}
+              textareaClassName={`border-neutral-600 ${errorMessages.name ? "is-invalid" : "is-valid"}`}
             />
             <br />
             <ButtonDemo text="Send message" className="rounded-full get-in-touch-btn" size="lg" />
@@ -283,7 +311,7 @@ const IdeasSection = () => {
     <section className="ideas mb-[200px]">
       <motion.div className="container" onViewportEnter={() => setIsInView(true)} viewport={{ amount: 0.7 }}>
         <div
-          className={`banner bg-[rgb(207,241,255)] rounded-[30px] p-[40px] pb-0 shadow-md max-w-[850px] mx-auto overflow-hidden  flex flex-col items-center ${
+          className={`banner bg-[rgb(0,0,0,0.05)] rounded-[30px] p-[40px] pb-0 shadow-md max-w-[850px] mx-auto overflow-hidden  flex flex-col items-center ${
             inView ? "lazy-animate" : ""
           }`}
           data-lazy="fade-up"
@@ -321,17 +349,20 @@ export default function Content() {
       ) : (
         <main className="home-page">
           <header>
-            <nav className="bg-success text-white p-5 flex gap-10">
+            <nav className=" text-white p-5 flex gap-10">
               {/* <div className="logo">
                 <img className="max-w-[30px] " src={logo} alt="" />
               </div> */}
               <ul className="flex items-center gap-5  ml-auto">
                 <a href="#features">Features</a>
                 <a href="#contact">Contact</a>
-                <a href={` ${fetchedCurrentUser.details.id ? "/admin/dashboard" : "/admin/register"}`} target="_blank">
+                <a
+                  href={` ${fetchedCurrentUser.details.id ? "/admin/dashboard" : "/admin/register"}`}
+                  target="_blank"
+                >
                   <ButtonDemo
                     text={` ${fetchedCurrentUser.details.id ? "Dashboard" : "Become a member"}`}
-                    className="rounded-full border shadow-none"
+                    className="rounded-full shadow-none"
                     size="lg"
                   />
                 </a>
@@ -339,9 +370,11 @@ export default function Content() {
             </nav>
           </header>
           <ShowcaseSection />
+          <PlaceholderSection1 />
           <FeaturesSection />
           <ContactSection />
-          <IdeasSection />
+            <IdeasSection />
+            <PlaceholderSection2/>
           <Footer />
         </main>
       )}

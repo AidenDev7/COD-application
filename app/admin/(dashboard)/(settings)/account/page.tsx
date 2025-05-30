@@ -94,7 +94,7 @@ const Account = () => {
         <div className="min-h-[200px] flex-1  p-3 bg-gray-50 dark:bg-secondary rounded-lg">
           <div className="flex items-center justify-between text-sm gap-5 py-1">
             <div className="font-bold">Email:</div>
-            <div className="capitalize">{email}</div>
+            <div className="">{email}</div>
           </div>
           <div className="flex items-center justify-between text-sm gap-5 py-1">
             <div className="font-bold">Role:</div>

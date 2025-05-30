@@ -145,6 +145,8 @@ const images = {
   statueLeftImage: "/assets/images/rest/statue-left.png",
   statueRightImage: "/assets/images/rest/statue-right.png",
   heroesImage: "/assets/images/rest/heroes.png",
+  background1Image: "/assets/images/rest/background-1.jpg",
+  background2Image: "/assets/images/rest/background-2.jpg",
 };
 
 const localData = {
