@@ -93,7 +93,7 @@ export function ButtonDemo({
       variant={variant}
       size={size}
       disabled={disabled}
-      className={`${className} ${buttonStyle} cursor-pointer shadow-sm shadow-[rgba(0,0,0,.5)] ${size=='sm' ? ' rounded-sm text-xs':''}`}
+      className={`${className} ${buttonStyle} cursor-pointer shadow-sm shadow-[rgba(255,255,255,.5)] ${size=='sm' ? ' rounded-sm text-xs':''}`}
       onClick={onClick}
       {...props}
     >
