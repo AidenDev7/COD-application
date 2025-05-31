@@ -9,7 +9,7 @@ import useAlert from "@/hooks/alert/useAlert";
 import useJoiValidation from "@/hooks/joi-validation/useJoiValidation";
 import useMessage from "@/hooks/useMessage";
 
-const { placeholderImage, logo, chakchaImage,background1Image,background2Image } = localData.images;
+const { placeholderImage, logo, chakchaImage, background1Image, background2Image } = localData.images;
 
 const ShowcaseSection = () => {
   const [inView, setIsInView] = useState(false);
@@ -19,7 +19,7 @@ const ShowcaseSection = () => {
 
   return (
     <section
-      className="showcase text-center sm:text-left  lg:min-h-[calc(100vh-80px)] flex items-center"
+      className="showcase text-center sm:text-left  lg:min-h-[calc(100vh-80px)] flex items-center green-cover"
       id="home"
     >
       <motion.div
@@ -55,11 +55,12 @@ const PlaceholderSection1 = () => {
   const { fetchedPages } = useApiContext();
 
   return (
-    <section
-      className="min-h-[100vh] relative"
-    >
-      <img className="absolute top-0 left-0 w-full h-full object-contain" src={background1Image} alt="" />
-      <div className="container">f</div>
+    <section className="md:!py-[40px] placeholder-section-1 green-cover">
+      <div className="container  !max-w-[1400px]">
+        <div className="pt-[56.25%] h-0  relative">
+          <img className="absolute top-0 left-0 w-full h-full object-cover rounded-lg" src={background1Image} alt="" />
+        </div>
+      </div>
     </section>
   );
 };
@@ -69,11 +70,12 @@ const PlaceholderSection2 = () => {
   const { fetchedPages } = useApiContext();
 
   return (
-    <section
-      className="min-h-[100vh] relative"
-    >
-      <img className="absolute top-0 left-0 w-full h-full object-contain" src={background2Image} alt="" />
-      <div className="container">f</div>
+    <section className="md:!py-[40px] camel-cover">
+      <div className="container  !max-w-[1400px]">
+        <div className="pt-[56.25%] h-0  relative">
+          <img className="absolute top-0 left-0 w-full h-full object-cover rounded-lg" src={background2Image} alt="" />
+        </div>
+      </div>
     </section>
   );
 };
@@ -85,7 +87,7 @@ const FeaturesSection = () => {
   const { title, description, images } = fetchedPages.homePage.sections.features;
 
   return (
-    <section className="features " id="features">
+    <section className="features green-cover" id="features">
       <motion.div className="container" onViewportEnter={() => setIsInView(true)} viewport={{ amount: 0.3 }}>
         <div className={`${inView ? "lazy-animate" : ""}`} data-lazy="fade">
           <h2 className="text-3xl font-semibold text-center mb-3">{title}</h2>
@@ -227,7 +229,7 @@ const ContactSection = () => {
   }, [result, wasSubmitted]);
 
   return (
-    <section className="contact" id="contact">
+    <section className="contact camel-cover" id="contact">
       <motion.div className="container " onViewportEnter={() => setIsInView(true)} viewport={{ amount: 0.7 }}>
         <div
           className={`md:flex gap-[50px] max-w-[850px] mx-auto ${inView ? "lazy-animate" : ""}`}
@@ -279,7 +281,7 @@ const ContactSection = () => {
               value={state.email}
               callback={onChange}
               errorMessage={errorMessages.email}
-             inputClassName={`border-neutral-600  ${errorMessages.name ? "is-invalid" : "is-valid"}`}
+              inputClassName={`border-neutral-600  ${errorMessages.name ? "is-invalid" : "is-valid"}`}
             />
             <br />
             <TextareaDemo
@@ -308,7 +310,7 @@ const IdeasSection = () => {
   const [inView, setIsInView] = useState(false);
   const [inView2, setIsInView2] = useState(false);
   return (
-    <section className="ideas mb-[200px]">
+    <section className="ideas camel-cover">
       <motion.div className="container" onViewportEnter={() => setIsInView(true)} viewport={{ amount: 0.7 }}>
         <div
           className={`banner bg-[rgb(0,0,0,0.05)] rounded-[30px] p-[40px] pb-0 shadow-md max-w-[850px] mx-auto overflow-hidden  flex flex-col items-center ${
@@ -349,7 +351,7 @@ export default function Content() {
       ) : (
         <main className="home-page">
           <header>
-            <nav className=" text-white p-5 flex gap-10">
+            <nav className=" text-white p-5 flex gap-10 green-cover">
               {/* <div className="logo">
                 <img className="max-w-[30px] " src={logo} alt="" />
               </div> */}
@@ -373,8 +375,8 @@ export default function Content() {
           <PlaceholderSection1 />
           <FeaturesSection />
           <ContactSection />
-            <IdeasSection />
-            <PlaceholderSection2/>
+          <IdeasSection />
+          <PlaceholderSection2 />
           <Footer />
         </main>
       )}
